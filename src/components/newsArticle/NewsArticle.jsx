@@ -18,8 +18,10 @@ function NewsArticle({
         <img src={image} alt="News article" />
       </div>
       <div className="news-article__content">
-        <h3 className="news-article__title">{title}</h3>
-        <p className="news-article__text">{description}</p>
+        <div className="news-article__body">
+          <h3 className="news-article__title">{title}</h3>
+          <p className="news-article__text">{description}</p>
+        </div>
         <div className="news-article__footer">
           <span className="news-article__author">{authorNameFormatted}</span>
           <span className="news-article__date">{datePosted}</span>

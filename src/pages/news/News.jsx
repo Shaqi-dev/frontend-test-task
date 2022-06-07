@@ -4,14 +4,13 @@ import { authSelector } from '../../redux/authSlice';
 import { newsSelector } from '../../redux/newsSlice';
 import { USER, ADMIN } from '../../constants';
 import PageTitle from '../../components/pageTitle/PageTitle';
-import AddNewsArticle from './addNews/AddNewsArticle';
+import AddNewsArticle from '../../components/addNews/AddNewsArticle';
 import NewsArticle from '../../components/newsArticle/NewsArticle';
 import './News.scss';
 
 function News() {
   const news = useSelector(newsSelector);
   const { userType } = useSelector(authSelector);
-  console.log(news);
   return (
     <main className="news">
       <PageTitle className="news__title">Новости</PageTitle>
@@ -26,12 +25,12 @@ function News() {
               authorId={item.authorId}
               datePosted={item.datePosted}
             />
-          ))
-        }
-        {
-          (userType === USER || userType === ADMIN) && <AddNewsArticle />
+          )).reverse()
         }
       </div>
+      {
+        (userType === USER || userType === ADMIN) && <AddNewsArticle />
+      }
     </main>
   );
 }

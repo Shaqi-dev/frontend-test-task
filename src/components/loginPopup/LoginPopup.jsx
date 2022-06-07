@@ -19,24 +19,26 @@ function LoginPopup({ handleClose }) {
   const passwordInputEl = useRef(null);
 
   const getValue = (input) => input.current.value.toLowerCase();
-  const getUser = (login) => users.find((user) => user.name === login);
+  const getUserByName = (login) => users.find((user) => user.name === login);
 
   const checkUserPassword = (login, password) => {
-    const userData = getUser(login);
+    const userData = getUserByName(login);
     return userData.password === password;
   };
 
   const handleSuccess = () => {
     const login = getValue(loginInputEl);
-    const userData = getUser(login);
+    const userData = getUserByName(login);
+    const userName = userData.name;
+    const userType = userData.type;
 
     setError({
       status: false,
-      message: '',
+      message: null,
     });
     dispatch(logIn({
-      userName: userData.name,
-      userType: userData.type,
+      userName,
+      userType,
     }));
     handleClose();
   };
@@ -48,15 +50,22 @@ function LoginPopup({ handleClose }) {
     });
   };
 
+  const checkInputsLength = () => {
+    const login = getValue(loginInputEl).length;
+    const password = getValue(passwordInputEl).length;
+
+    return login === 0 || password === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const login = getValue(loginInputEl);
     const password = getValue(passwordInputEl);
 
-    if (login.length === 0 || password.length === 0) {
+    if (checkInputsLength()) {
       handleError('Пожалуйста, заполните все необходимые поля');
-    } else if (getUser(login) === undefined) {
+    } else if (getUserByName(login) === undefined) {
       handleError('Пользователя с указанным логином не существует');
     } else if (checkUserPassword(login, password) === false) {
       handleError('Введен неверный пароль');

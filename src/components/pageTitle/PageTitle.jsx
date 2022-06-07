@@ -4,9 +4,9 @@ import './PageTitle.scss';
 
 function PageTitle({ children, className }) {
   return (
-    <h3 className={`page-title ${className}`}>
+    <h2 className={`page-title ${className}`}>
       {children}
-    </h3>
+    </h2>
   );
 }
 PageTitle.propTypes = {
