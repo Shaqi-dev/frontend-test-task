@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import news from '../db/news';
 
-const initialState = news.slice(0, 4);
+const initialState = news;
 
 const newsSlice = createSlice({
   name: 'news',
@@ -31,6 +31,7 @@ const { reducer } = newsSlice;
 
 export const { addNews, setApprove } = newsSlice.actions;
 
-export const newsSelector = (state) => state.news;
+export const newsSelectorAll = (state) => state.news;
+export const newsSelectorApproved = (state) => state.news.filter((item) => item.isApproved);
 
 export default reducer;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../redux/authSlice';
-import { newsSelector } from '../../redux/newsSlice';
+import { newsSelectorAll, newsSelectorApproved } from '../../redux/newsSlice';
 import useDebounce from '../../hooks/useDebounce';
 import { USER, ADMIN } from '../../constants';
 import PageTitle from '../../components/pageTitle/PageTitle';
@@ -10,8 +10,10 @@ import NewsArticle from '../../components/newsArticle/NewsArticle';
 import './News.scss';
 
 function News() {
-  const news = useSelector(newsSelector);
   const { userType } = useSelector(authSelector);
+  const news = userType === ADMIN
+    ? useSelector(newsSelectorAll)
+    : useSelector(newsSelectorApproved);
   const searchInputEl = useRef(null);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,7 +35,7 @@ function News() {
     } else {
       setNewsResults(news);
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, news]);
 
   const handleSearch = () => setSearchTerm(searchInputEl.current.value);
 
