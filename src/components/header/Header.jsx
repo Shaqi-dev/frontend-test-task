@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../logo';
 import Nav from '../nav';
 import Button from '../button';
+import LoginPopup from '../loginPopup';
 import './Header.scss';
 
-function Header() {
-  const navPages = [
-    { link: '/news', title: 'новости' },
-  ];
+const navPages = [
+  { link: '/news', title: 'новости' },
+];
 
-  const handleLogin = () => {
-    console.log('click');
+function Header() {
+  const [loginPopupIsOpen, setLoginPopupIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setLoginPopupIsOpen(true);
+  };
+
+  const closePopup = (e) => {
+    e.stopPropagation();
+    setLoginPopupIsOpen(false);
   };
 
   return (
     <header className="header">
       <Logo />
       <Nav pages={navPages} />
-      <Button title="Войти" onClick={handleLogin} />
+      <Button title="Войти" handleClick={openPopup} />
+      {loginPopupIsOpen && <LoginPopup handleClose={closePopup} />}
     </header>
   );
 }

@@ -1,25 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import './Button.scss';
 
-function Button({ title, onClick }) {
+function Button({
+  title,
+  type,
+  handleClick,
+  className,
+}) {
   return (
     <button
-      type="button"
-      onClick={onClick}
-      className="button"
+      type={type === 'submit' ? 'submit' : 'button'}
+      onClick={handleClick}
+      className={`button ${className}`}
     >
       {title}
     </button>
   );
 }
 Button.propTypes = {
-  title: PropTypes.string,
-  onClick: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  type: string,
+  handleClick: PropTypes.func,
+  className: string,
 };
 Button.defaultProps = {
-  title: '',
-  onClick: () => {},
+  type: '',
+  handleClick: () => {},
+  className: '',
 };
 
 export default Button;
