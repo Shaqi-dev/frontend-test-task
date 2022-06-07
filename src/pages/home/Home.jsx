@@ -1,10 +1,12 @@
 import React from 'react';
+import PageTitle from '../../components/pageTitle/PageTitle';
+import './Home.scss';
 
 function Home() {
   return (
-    <div>
-      Home Page
-    </div>
+    <main className="home">
+      <PageTitle className="home__title">Главная страница</PageTitle>
+    </main>
   );
 }
 

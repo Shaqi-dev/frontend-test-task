@@ -1,10 +1,12 @@
 import React from 'react';
+import PageTitle from '../../components/pageTitle/PageTitle';
+import './News.scss';
 
 function News() {
   return (
-    <div>
-      News Page
-    </div>
+    <main className="news">
+      <PageTitle className="news__title">Новости</PageTitle>
+    </main>
   );
 }
 
