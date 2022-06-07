@@ -9,7 +9,7 @@
   border-color: transparent;
   border-radius: 8px;
   cursor: pointer;
-  @include transition(80ms all ease-in-out);
+  @include transition($base-transition);
 }
 
 .button:hover {

@@ -8,7 +8,7 @@
   letter-spacing: 0.05rem;
   color: $color-primary;
   text-decoration: none;
-  @include transition(80ms all ease-in-out);
+  @include transition($base-transition);
 }
 
 .nav__item:hover {
