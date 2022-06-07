@@ -66,7 +66,7 @@ function AddNewsArticle() {
   return (
     <div className="add-news">
       <PageTitle className="add-news__title">Добавить новость: </PageTitle>
-      <form className="add-news__form">
+      <form className="add-news__form" onSubmit={handleSubmit}>
         <div className="add-news__inputs-row">
           <textarea
             ref={inputTitleEl}
@@ -95,7 +95,6 @@ function AddNewsArticle() {
         <Button
           type="submit"
           className="add-news__submit-button"
-          handleClick={handleSubmit}
         >
           Отправить
         </Button>
