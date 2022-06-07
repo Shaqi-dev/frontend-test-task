@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { GUEST } from './userTypes';
+import { GUEST } from '../../constants';
 
 const initialState = {
   isLoggedIn: false,
