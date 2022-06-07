@@ -1,0 +1,6 @@
+@use '../../../sass/variables' as *; 
+
+.nav__item {
+  color: $color-primary;
+  text-decoration: none;
+}

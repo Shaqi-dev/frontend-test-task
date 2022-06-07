@@ -1,0 +1,17 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.button {
+  padding: 10px 30px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background-color: $color-accent-primary;
+  border-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  @include transition(80ms all ease-in-out);
+}
+
+.button:hover {
+  background-color: $color-accent-primary-hover;
+}
