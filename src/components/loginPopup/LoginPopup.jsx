@@ -9,76 +9,63 @@ import './LoginPopup.scss';
 
 function LoginPopup({ handleClose }) {
   const dispatch = useDispatch();
+  const loginInputEl = useRef(null);
+  const passwordInputEl = useRef(null);
+  const getLowerCaseValue = (input) => input.current.value.toLowerCase();
+  const getUserByName = (login) => users.find((user) => user.name === login);
 
   const [error, setError] = useState({
     status: false,
     message: '',
   });
 
-  const loginInputEl = useRef(null);
-  const passwordInputEl = useRef(null);
-
-  const getValue = (input) => input.current.value.toLowerCase();
-  const getUserByName = (login) => users.find((user) => user.name === login);
-
-  const checkUserPassword = (login, password) => {
-    const userData = getUserByName(login);
-    return userData.password === password;
-  };
-
-  const handleSuccess = () => {
-    const login = getValue(loginInputEl);
+  const onSuccess = (login) => {
     const userData = getUserByName(login);
     const userName = userData.name;
     const userType = userData.type;
 
-    setError({
-      status: false,
-      message: null,
-    });
-    dispatch(logIn({
-      userName,
-      userType,
-    }));
+    setError({ status: false, message: null });
+    dispatch(logIn({ userName, userType }));
     handleClose();
   };
 
-  const handleError = (message) => {
-    setError({
-      status: true,
-      message,
-    });
+  const onError = (message) => {
+    setError({ status: true, message });
   };
 
-  const checkInputsLength = () => {
-    const login = getValue(loginInputEl).length;
-    const password = getValue(passwordInputEl).length;
+  const checkLengthError = (login, password) => login.length === 0 || password.length === 0;
 
-    return login === 0 || password === 0;
-  };
+  const checkLoginError = (login) => getUserByName(login) === undefined;
+
+  const checkPasswordError = (login, password) => getUserByName(login).password !== password;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const login = getValue(loginInputEl);
-    const password = getValue(passwordInputEl);
+    const login = getLowerCaseValue(loginInputEl);
+    const password = getLowerCaseValue(passwordInputEl);
 
-    if (checkInputsLength()) {
-      handleError('Пожалуйста, заполните все необходимые поля');
-    } else if (getUserByName(login) === undefined) {
-      handleError('Пользователя с указанным логином не существует');
-    } else if (checkUserPassword(login, password) === false) {
-      handleError('Введен неверный пароль');
-    } else {
-      handleSuccess();
-    }
+    if (checkLengthError(login, password)) return onError('Пожалуйста, заполните все необходимые поля');
+    if (checkLoginError(login)) return onError('Пользователя с указанным логином не существует');
+    if (checkPasswordError(login, password)) return onError('Введен неверный пароль');
+
+    return onSuccess(login);
   };
 
   return (
     <Overlay>
       <div className="login-popup">
-        <Button className="login-popup__close-button" handleClick={handleClose}>X</Button>
-        <form action="submit" className="login-popup__form" onSubmit={handleSubmit}>
+        <Button
+          className="login-popup__close-button"
+          handleClick={handleClose}
+        >
+          X
+        </Button>
+        <form
+          action="submit"
+          className="login-popup__form"
+          onSubmit={handleSubmit}
+        >
           <label htmlFor="login" className="login-popup__input-wrapper">
             <span className="login-popup__input-label">
               Логин:
@@ -102,9 +89,18 @@ function LoginPopup({ handleClose }) {
             />
           </label>
           {
-            error.status && <span className="login-popup__error-message">{error.message}</span>
+            error.status && (
+              <span className="login-popup__error-message">
+                {error.message}
+              </span>
+            )
           }
-          <Button type="submit" className="login-popup__submit-button">Войти</Button>
+          <Button
+            type="submit"
+            className="login-popup__submit-button"
+          >
+            Войти
+          </Button>
         </form>
       </div>
     </Overlay>
