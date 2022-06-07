@@ -1,14 +1,5 @@
 @use '../../sass/variables' as *;
 
-.overlay {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-}
-
 .login-popup {
   position: relative;
   width: 400px;

@@ -3,7 +3,7 @@ import PropTypes, { string } from 'prop-types';
 import './Button.scss';
 
 function Button({
-  title,
+  children,
   type,
   handleClick,
   className,
@@ -14,12 +14,12 @@ function Button({
       onClick={handleClick}
       className={`button ${className}`}
     >
-      {title}
+      {children}
     </button>
   );
 }
 Button.propTypes = {
-  title: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   type: string,
   handleClick: PropTypes.func,
   className: string,

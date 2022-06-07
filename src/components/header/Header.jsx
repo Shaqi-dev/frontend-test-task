@@ -25,7 +25,7 @@ function Header() {
     <header className="header">
       <Logo />
       <Nav pages={navPages} />
-      <Button title="Войти" handleClick={openPopup} />
+      <Button handleClick={openPopup}>Войти</Button>
       {loginPopupIsOpen && <LoginPopup handleClose={closePopup} />}
     </header>
   );

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Overlay from '../overlay';
 import Button from '../button';
 import './LoginPopup.scss';
 
 function LoginPopup({ handleClose }) {
   return (
-    <div className="overlay">
+    <Overlay>
       <div className="login-popup">
-        <Button title="X" className="login-popup__close-button" handleClick={handleClose} />
+        <Button className="login-popup__close-button" handleClick={handleClose}>X</Button>
         <form action="submit" className="login-popup__form">
           <label htmlFor="login" className="login-popup__input-wrapper">
             <span className="login-popup__input-label">
@@ -21,10 +22,10 @@ function LoginPopup({ handleClose }) {
             </span>
             <input type="text" id="password" className="login-popup__text-input" />
           </label>
-          <Button type="submit" title="Войти" className="login-popup__submit-button" />
+          <Button type="submit" className="login-popup__submit-button">Войти</Button>
         </form>
       </div>
-    </div>
+    </Overlay>
   );
 }
 LoginPopup.propTypes = {
