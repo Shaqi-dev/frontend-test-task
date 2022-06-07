@@ -1,6 +1,15 @@
-@use '../../../sass/variables' as *; 
+@use '../../../sass/variables' as *;
+@use '../../../sass/mixins' as *;
 
 .nav__item {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
   color: $color-primary;
   text-decoration: none;
+  @include transition(80ms all ease-in-out);
+}
+
+.nav__item:hover {
+  color: $color-accent-primary;
 }
