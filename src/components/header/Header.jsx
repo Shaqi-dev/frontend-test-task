@@ -41,7 +41,7 @@ function Header() {
         isLoggedIn
           ? (
             <>
-              <span className="header__user-name">{userName}</span>
+              <span className="header__user-name">{userName.charAt(0).toUpperCase() + userName.slice(1)}</span>
               <Button handleClick={userLogOut}>Выйти</Button>
             </>
           )

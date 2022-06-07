@@ -13,7 +13,7 @@ function Home() {
     <main className="home">
       <PageTitle className="home__title">
         {
-          `Привет, ${isLoggedIn ? userName : 'Гость'}!`
+          `Привет, ${isLoggedIn ? userName.charAt(0).toUpperCase() + userName.slice(1) : 'Гость'}!`
         }
       </PageTitle>
     </main>
