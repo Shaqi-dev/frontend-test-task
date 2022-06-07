@@ -1,13 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../redux/slices/authSlice';
+import { authSelector } from '../../redux/authSlice';
 import PageTitle from '../../components/pageTitle/PageTitle';
 import './Home.scss';
 
 function Home() {
-  const { isLoggedIn, userName } = useSelector(
-    authSelector,
-  );
+  const { isLoggedIn, userName } = useSelector(authSelector);
 
   return (
     <main className="home">

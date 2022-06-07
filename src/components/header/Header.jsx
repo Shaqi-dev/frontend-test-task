@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector, logOut } from '../../redux/slices/authSlice';
+import { authSelector, logOut } from '../../redux/authSlice';
 import Logo from '../logo';
 import Nav from '../nav';
 import Button from '../button';

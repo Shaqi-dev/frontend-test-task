@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/slices/authSlice';
+import { logIn } from '../../redux/authSlice';
 import Overlay from '../overlay';
 import Button from '../button';
 import users from '../../db/users';
