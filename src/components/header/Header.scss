@@ -19,7 +19,7 @@
   font-weight: 700;
   line-height: 200%;
   cursor: pointer;
-  @include transition(80ms all ease-in-out);
+  @include transition($base-transition);
 }
 
 .header__user-name:hover {
