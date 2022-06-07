@@ -9,9 +9,15 @@
   justify-content: space-between;
 }
 
+.header__personal-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .header__user-name {
   font-weight: 700;
-  padding-right: 30px;
+  line-height: 200%;
   cursor: pointer;
   @include transition(80ms all ease-in-out);
 }

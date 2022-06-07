@@ -24,8 +24,7 @@ function Header() {
     setLoginPopupIsOpen(true);
   };
 
-  const closePopup = (e) => {
-    e.stopPropagation();
+  const closePopup = () => {
     setLoginPopupIsOpen(false);
   };
 
@@ -37,16 +36,18 @@ function Header() {
     <header className="header">
       <Logo />
       <Nav pages={navPages} />
-      {
+      <div className="header__personal-info">
+        {
         isLoggedIn
           ? (
-            <label htmlFor="log-out-button">
+            <>
               <span className="header__user-name">{userName}</span>
-              <Button id="log-out-button" handleClick={userLogOut}>Выйти</Button>
-            </label>
+              <Button handleClick={userLogOut}>Выйти</Button>
+            </>
           )
           : <Button handleClick={openPopup}>Войти</Button>
       }
+      </div>
       {
         loginPopupIsOpen && <LoginPopup handleClose={closePopup} />
       }
