@@ -13,7 +13,7 @@ function Home() {
     <main className="home">
       <PageTitle className="home__title">
         {
-          `Привет, ${isLoggedIn ? userName : 'Гость'}`
+          `Привет, ${isLoggedIn ? userName : 'Гость'}!`
         }
       </PageTitle>
     </main>
