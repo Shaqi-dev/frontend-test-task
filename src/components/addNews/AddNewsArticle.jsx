@@ -125,7 +125,8 @@ function AddNewsArticle() {
         {
           userType === USER && (
             <span className="add-news__privacy">
-              `Нажимая на кнопку, вы даете согласие на обработку своих персональных данных. `
+              Нажимая на кнопку, вы даете согласие на обработку своих персональных данных.
+              {' '}
               <Link to="/privacy" className="add-news__link">
                 Политика конфиденциальности
               </Link>
