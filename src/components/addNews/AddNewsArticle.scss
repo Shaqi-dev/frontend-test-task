@@ -51,11 +51,18 @@
   resize: none;
 }
 
-.add-news__error-message {
+.add-news__message {
   margin: 0 auto;
-  color: $color-error;
   font-size: 1.4rem;
   font-weight: 500;
+}
+
+.add-news__message--error {
+  color: $color-error;
+}
+
+.add-news__message--success {
+  color: $color-success;
 }
 
 .add-news__submit-button {

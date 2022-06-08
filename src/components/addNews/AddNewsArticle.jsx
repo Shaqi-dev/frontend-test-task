@@ -25,6 +25,11 @@ function AddNewsArticle() {
     message: null,
   });
 
+  const [success, setSuccess] = useState({
+    status: false,
+    message: null,
+  });
+
   const onSuccess = (title, description, image) => {
     const datePosted = '07.06.2022';
     const isApproved = userType === ADMIN;
@@ -60,6 +65,18 @@ function AddNewsArticle() {
     if (checkLengthError(title, description, image)) return onError('Пожалуйста, заполните все необходимые поля');
     if (checkImageUrlError(image)) return onError('Пожалуйста, введите корректную ссылку на изображение');
 
+    setSuccess({
+      status: true,
+      message: userType === ADMIN
+        ? 'Новость успешно опубликована!'
+        : 'Новость успешно отправлена на модерацию!',
+    });
+    setTimeout(() => setSuccess({ status: false, message: null }), 2000);
+
+    inputTitleEl.current.value = null;
+    inputDescriptionEl.current.value = null;
+    inputImageEl.current.value = null;
+
     return onSuccess(title, description, image);
   };
 
@@ -87,8 +104,15 @@ function AddNewsArticle() {
         />
         {
           error.status && (
-            <span className="add-news__error-message">
+            <span className="add-news__message add-news__message--error">
               {error.message}
+            </span>
+          )
+        }
+        {
+          success.status && (
+            <span className="add-news__message add-news__message--success">
+              {success.message}
             </span>
           )
         }
