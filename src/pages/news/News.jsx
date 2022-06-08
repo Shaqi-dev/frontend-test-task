@@ -51,14 +51,24 @@ function News() {
       />
       <div className="news__list">
         {
-          newsResults.map((item) => (
+          newsResults.map(({
+            id,
+            title,
+            description,
+            image,
+            authorId,
+            datePosted,
+            isApproved,
+          }) => (
             <NewsArticle
-              key={item.id}
-              title={item.title}
-              description={item.description}
-              image={item.image}
-              authorId={item.authorId}
-              datePosted={item.datePosted}
+              key={id}
+              id={id}
+              title={title}
+              description={description}
+              image={image}
+              authorId={authorId}
+              datePosted={datePosted}
+              isApproved={isApproved}
             />
           )).reverse()
         }

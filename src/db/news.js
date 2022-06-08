@@ -29,7 +29,7 @@ const news = [
   {
     id: '4',
     title: 'Поставки видеокарт в I кв. 2022 года выросли на 32%',
-    description: 'Согласно отчету Jon Peddie Research, на рынке дискретных графических карт произошли значительные изменения: поставки от Nvidia и AMD резко возросли на...',
+    description: 'Согласно отчету Jon Peddie Research, на рынке дискретных графических карт произошли значительные изменения...',
     image: 'https://www.it-world.ru/upload/iblock/aff/resize_700_467_joyv9haquf7m6xr0d1x2890t8p1sqo4d_s.webp',
     authorId: '1',
     datePosted: '07.06.2022',
