@@ -1,7 +1,5 @@
 # Profilance Group News
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Скриншот
 
 ![image](https://user-images.githubusercontent.com/71282670/172519237-4e800e48-ad09-4c96-929e-1ca23f0fa322.png)
