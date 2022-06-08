@@ -17,6 +17,7 @@ function News() {
   const searchInputEl = useRef(null);
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [isNotFound, setIsNotFound] = useState(false);
   const [newsResults, setNewsResults] = useState(news);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -31,13 +32,39 @@ function News() {
         return title.indexOf(search) > -1 || description.indexOf(search) > -1;
       });
 
+      if (filterResult.length === 0) setIsNotFound(true);
+
       setNewsResults(filterResult);
     } else {
+      setIsNotFound(false);
       setNewsResults(news);
     }
   }, [debouncedSearchTerm, news]);
 
   const handleSearch = () => setSearchTerm(searchInputEl.current.value);
+
+  const getNews = () => (
+    newsResults.map(({
+      id,
+      title,
+      description,
+      image,
+      authorId,
+      datePosted,
+      isApproved,
+    }) => (
+      <NewsArticle
+        key={id}
+        id={id}
+        title={title}
+        description={description}
+        image={image}
+        authorId={authorId}
+        datePosted={datePosted}
+        isApproved={isApproved}
+      />
+    )).reverse()
+  );
 
   return (
     <main className="news">
@@ -51,26 +78,13 @@ function News() {
       />
       <div className="news__list">
         {
-          newsResults.map(({
-            id,
-            title,
-            description,
-            image,
-            authorId,
-            datePosted,
-            isApproved,
-          }) => (
-            <NewsArticle
-              key={id}
-              id={id}
-              title={title}
-              description={description}
-              image={image}
-              authorId={authorId}
-              datePosted={datePosted}
-              isApproved={isApproved}
-            />
-          )).reverse()
+        isNotFound
+          ? (
+            <span className="news__not-found-message">
+              К сожалению, новости по вашему запросу не найдены :(
+            </span>
+          )
+          : getNews()
         }
       </div>
       {
