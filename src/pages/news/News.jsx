@@ -67,7 +67,7 @@ function News() {
   );
 
   return (
-    <main className="news">
+    <section className="news">
       <PageTitle className="news__title">Новости</PageTitle>
       <input
         ref={searchInputEl}
@@ -90,7 +90,7 @@ function News() {
       {
         (userType === USER || userType === ADMIN) && <AddNewsArticle />
       }
-    </main>
+    </section>
   );
 }
 

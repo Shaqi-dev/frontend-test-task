@@ -8,13 +8,13 @@ function Home() {
   const { isLoggedIn, userName } = useSelector(authSelector);
 
   return (
-    <main className="home">
+    <section className="home">
       <PageTitle className="home__title">
         {
           `Привет, ${isLoggedIn ? userName.charAt(0).toUpperCase() + userName.slice(1) : 'Гость'}!`
         }
       </PageTitle>
-    </main>
+    </section>
   );
 }
 
